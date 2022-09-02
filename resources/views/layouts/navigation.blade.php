@@ -35,6 +35,7 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <a href="{{ route('instruction', ['locale'=>app()->getLocale(),'filename'=>'Istruzioni.pdf']) }}" class="mx-2 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-bold leading-5 dark:text-white text-primary hover:text-secondary hover:border-primary focus:outline-none focus:text-secondary focus:border-primary transition duration-150 ease-in-out">{{ __('site.options') }}</a>
                 <a href="{{ route('instruction', ['locale'=>app()->getLocale(),'filename'=>'Istruzioni.pdf']) }}" class="mx-2 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-bold leading-5 dark:text-white text-primary hover:text-secondary hover:border-primary focus:outline-none focus:text-secondary focus:border-primary transition duration-150 ease-in-out">{{ __('site.instructions') }}</a>
                 <a href="mailto:melissa.laghi@mm-servizi.ch?subject=Feedback app MM Agricole" class="mx-2 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-bold leading-5 dark:text-white text-primary hover:text-secondary hover:border-primary focus:outline-none focus:text-secondary focus:border-primary transition duration-150 ease-in-out">{{ __('site.suggestion') }}</a>
             </div>
@@ -76,6 +77,7 @@
 
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
+                <a href="" class="mx-2 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-bold leading-5 dark:text-white text-primary hover:text-secondary hover:border-primary focus:outline-none focus:text-secondary focus:border-primary transition duration-150 ease-in-out">{{ __('site.options') }}</a>
                 <a href="{{ route('instruction', ['locale'=>app()->getLocale(),'filename'=>'Istruzioni.pdf']) }}" class="mx-2 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-bold leading-5 dark:text-white text-primary hover:text-secondary hover:border-primary focus:outline-none focus:text-secondary focus:border-primary transition duration-150 ease-in-out">{{ __('site.instructions') }}</a>
                 <a href="mailto:melissa.laghi@mm-servizi.ch?subject=Feedback app MM Agricole" class="mx-2 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-bold leading-5 dark:text-white text-primary hover:text-secondary hover:border-primary focus:outline-none focus:text-secondary focus:border-primary transition duration-150 ease-in-out">{{ __('site.suggestion') }}</a>
             </div>

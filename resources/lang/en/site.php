@@ -20,6 +20,7 @@ return [
     'statistics' => 'Statistics',
     'instructions' => 'Instructions',
     'suggestion' => 'Suggestion',
+    'options' => 'Options',
 
     //Navigation botton
     'new_document' => "New Document",
