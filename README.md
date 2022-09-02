@@ -45,7 +45,7 @@ Download the repository into your folder, open the folder and run:
 
     composer install
 
-**create** a database rename the file **.env.example** to **.env** and change it to your need, then run:
+**create** a database, rename the file **.env.example** to **.env** and change it to your need, then run:
 
     php artisan migrate
 
