@@ -16,8 +16,8 @@ class CreateVehiclesTable extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->string('brand');
-            $table->string('model');
-            $table->string('plate');
+            $table->string('model')->nullable();
+            $table->string('plate')->nullable();
             $table->integer('hours')->nullable();
             $table->foreignId('client_id')->constrained('clients');
             $table->timestamps();
