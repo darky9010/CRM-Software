@@ -1,0 +1,98 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('site.new_supplier') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <a href="{{ route('companies.index', app()->getLocale()) }}"
+               class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded">
+                <svg class="w-6 h-6 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg> {{ __('site.previous_page') }}
+            </a>
+        </div>
+    </div>
+
+    <div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <form class="w-full" name="companies/create" id="companies/create" method="post"
+                          action="{{ route('companies.store',app()->getLocale())}}">
+                        @csrf
+                        <div class="flex flex-wrap -mx-3 mb-6">
+                            <div class="w-full md:w-2/6 px-3">
+                                <label
+                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.name') }}</label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text" id="name" name="name" class="form-control" required="">
+                            </div>
+                            <div class="w-full md:w-1/6 px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.phone') }}</label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text" id="phone" name="phone" class="form-control" required="">
+                            </div>
+                            <div class="w-full md:w-1/6 px-3">
+                                <label
+                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.mail') }}</label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text" id="mail" name="mail" class="form-control" >
+                            </div>
+                            <div class="w-full md:w-2/6 px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.site') }}</label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text" id="site" name="site" class="form-control" required="">
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap -mx-3 mb-6">
+                            <div class="w-full md:w-2/5 px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.address') }}</label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text" id="address" name="address" class="form-control" required="">
+                            </div>
+                            <div class="w-full md:w-1/5 px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.postal_code') }}</label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text" id="postal_code" name="postal_code" class="form-control" required="">
+                            </div>
+                            <div class="w-full md:w-1/5 px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.city') }}</label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text" id="city" name="city" class="form-control" required="">
+                            </div>
+                            <div class="w-full md:w-1/5 px-3">
+                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.region') }}</label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text" id="region" name="region" class="form-control" required="">
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap -mx-3 mb-6">
+                            <div class="w-full md:w-3/3 px-3">
+                                <a aria-disabled="true"
+                                   class="shadow bg-gray-300 text-white font-bold py-2 px-4 rounded">
+                                    {{ __('site.add_contact') }}</a>
+                            </div>
+                        </div>
+                        <button type="submit"
+                                class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded">
+                            {{ __('site.create') }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
