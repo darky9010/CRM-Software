@@ -39,9 +39,13 @@
         <tr class="{{$status}} border-b border-b-slate-500 dark:border-b-gray-700 hover:bg-gray-200 dark:hover:bg-gray-500">
             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">{{ $report->name }}</td>
             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">{{$report->client->name}} {{$report->client->surname}}</td>
-            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">@if (!is_null($report->vehicle_id))
-                    {{$report->vehicle->brand}} {{$report->vehicle->model}} {{$report->vehicle->plate}}
-                @endif</td>
+            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                @foreach($report->vehicles as $vehicle)
+                    @if (!is_null($vehicle->id))
+                        {{$vehicle->brand}} {{$vehicle->model}} {{$vehicle->plate}} <br>
+                    @endif
+                @endforeach
+            </td>
             <td class="px-6 py-4 font-medium sm:text-right text-gray-900 dark:text-white whitespace-nowrap">{{number_format($report->total,2,".","'")}}</td>
             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap text-center">
                 <form method="POST"

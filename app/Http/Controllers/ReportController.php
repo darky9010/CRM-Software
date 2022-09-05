@@ -90,7 +90,7 @@ class ReportController extends Controller
         $report->total = $request->sum;
         $report->date = now();
         $report->status = $request->status;
-        ($request->vehicle_id == 0) ? $report->vehicle_id == NULL : $report->vehicle_id = $request->vehicle_id;
+       // ($request->vehicle_id == 0) ? $report->vehicle_id == NULL : $report->vehicle_id = $request->vehicle_id;
         $report->client_id = $request->client_id;
         $report->save();
         //Salvo per avere l'id del report
@@ -98,6 +98,7 @@ class ReportController extends Controller
         $report->save();
         $product = Product::find($request->product_id);
         $report->products()->attach($product, ['qta' => $request->qta, 'sum' => $request->sum, 'description' => $request->description]);
+        $report->vehicles()->attach($request->vehicle_id);
         return redirect()->route('reports.edit', ['locale' => app()->getLocale(), 'report' => $report->id]);
     }
 
@@ -144,10 +145,12 @@ class ReportController extends Controller
             $total = $total - $sum;
             $report->products()->detach($product_id);
         }
-        ($request->vehicle_id == 0) ? $vehicle == NULL : $vehicle = $request->vehicle_id;
+        $report->vehicles()->detach();
+        //($request->vehicle_id == 0) ? $vehicle == NULL : $vehicle = $request->vehicle_id;
         $sum = $request->sum;
         $total = $total + $sum;
         $product = Product::find($product_id);
+        $report->vehicles()->attach($request->vehicle_id);
         $report->products()->attach($product, ['qta' => $request->qta, 'sum' => $sum, 'description' => $request->description]);
 
         $report

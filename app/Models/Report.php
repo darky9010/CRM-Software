@@ -11,11 +11,11 @@ class Report extends Model
     protected $fillable = ['type', 'name','r_terms','p_terms','tax','total','status','client_id','vehicle_id',];
 
     public function products(){
-        return $this->belongsToMany(Product::class)->withPivot('qta','sum','description')->withTimestamps();;
+        return $this->belongsToMany(Product::class)->withPivot('qta','sum','description')->withTimestamps();
     }
 
-    public function vehicle(){
-        return $this->belongsTo(Vehicle::class);
+    public function vehicles(){
+        return $this->belongsToMany(Vehicle::class)->withTimestamps();
     }
 
     public function client(){

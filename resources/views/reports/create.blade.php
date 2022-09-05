@@ -105,7 +105,7 @@
                                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.vehicle') }}</label>
                                     <select
                                         class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        name="vehicle_id" id="vehicle_id">
+                                        name="vehicle_id[]" id="vehicle_id" multiple="">
 
                                     </select>
                                 </div>

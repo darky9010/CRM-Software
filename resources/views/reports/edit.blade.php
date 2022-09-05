@@ -126,11 +126,11 @@
                                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.vehicle') }}</label>
                                     <select
                                         class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        name="vehicle_id" id="vehicle_id">
-                                        @if (!is_null($report->vehicle_id))
-                                            <option value="{{ $report->vehicle_id }}"
-                                                    selected>{{$report->vehicle->brand}} {{$report->vehicle->model}} {{$report->vehicle->plate}}</option>
-                                        @endif
+                                        name="vehicle_id[]" id="vehicle_id" multiple="">
+                                        @foreach($report->vehicles as $vehicle)
+                                            <option value="{{ $vehicle->id }}"
+                                                    selected>{{$vehicle->brand}} {{$vehicle->model}} {{$vehicle->plate}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
                                 <input
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="text" id="hours" name="hours" class="form-control"
-                                    value="@if (!is_null($report->vehicle_id)){{ $report->vehicle->hours }}@endif">
+                                    value="">
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-6">

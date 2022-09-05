@@ -24,6 +24,10 @@ class DocumentController extends Controller
         $fmt = datefmt_create('it_IT',IntlDateFormatter::FULL,IntlDateFormatter::FULL,'Europe/Rome',IntlDateFormatter::GREGORIAN,'dd MMMM yyyy');
         $report = Report::find($id);
         $prodotti = [];
+        $brand = [];
+        $vmodel = [];
+        $plate = [];
+        $hours = [];
         $iva = floor(($report->total * $report->tax / 100) / 0.05) * 0.05;
         $description = "";
         $model = 'modello' . $report->type . '.docx';
@@ -37,15 +41,21 @@ class DocumentController extends Controller
         $my_template->setValue('citta', $report->client->city);
         $my_template->setValue('cantone', $report->client->region);
         $my_template->setValue('ncliente', $report->client->id);
-        if (!is_null($report->vehicle_id)) {
+        foreach ($report->vehicles as $vehicle) {
+            array_push($brand,$vehicle->brand);
+            array_push($vmodel,$vehicle->model);
+            array_push($plate,$vehicle->plate);
+            array_push($hours,$vehicle->hours);
+        }
+        if (!is_null($vehicle->id)) {
             //informazioni veicolo
-            $my_template->setValue('veicolo', $report->vehicle->brand);
-            $my_template->setValue('modello', $report->vehicle->model);
-            $my_template->setValue('targa', $report->vehicle->plate);
-            $my_template->setValue('ore', $report->vehicle->hours);
+            $my_template->setValue('veicolo', implode(' ',$brand));
+            $my_template->setValue('modello', implode(' ',$vmodel));
+            $my_template->setValue('targa', implode(' ',$plate));
+            $my_template->setValue('ore', implode(' ',$hours));
             $my_template->setValue('veicololab', "Veicoli");
-            $my_template->setValue('modellolab', "Modello");
-            $my_template->setValue('targalab', "Targa");
+            $my_template->setValue('modellolab', "Modelli");
+            $my_template->setValue('targalab', "Targhe");
             $my_template->setValue('orelab', "Ore");
         } else {
             $my_template->setValue('veicolo', "");
@@ -67,6 +77,7 @@ class DocumentController extends Controller
         $my_template->setValue('iva', $report->tax);
         $my_template->setValue('r_terms', $report->r_terms);
         $my_template->setValue('p_terms', $report->p_terms);
+
         //Inserimento dei prodotti nella tabella
         foreach ($report->products as $product) {
             $lines = explode("\r\n", $product->pivot->description);
