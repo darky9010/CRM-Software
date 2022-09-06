@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     use HasFactory;
-    protected $fillable = ['type', 'name','r_terms','p_terms','tax','total','status','client_id','vehicle_id',];
+    protected $fillable = ['type', 'name','r_terms','p_terms','tax','total','status','client_id'];
 
     public function products(){
         return $this->belongsToMany(Product::class)->withPivot('qta','sum','description')->withTimestamps();

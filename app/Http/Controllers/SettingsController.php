@@ -15,8 +15,8 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        $settings = Settings::all();
-        return view('settings.edit', compact('settings'));
+        $setting = Settings::select('logo')->first();
+        return view('components.application-logo', compact('setting'));
     }
 
     /**

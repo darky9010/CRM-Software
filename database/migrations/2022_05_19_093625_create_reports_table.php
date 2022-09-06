@@ -23,7 +23,6 @@ class CreateReportsTable extends Migration
             $table->decimal('total');
             $table->timestamp('date');
             $table->string('status');
-            $table->foreignId('vehicle_id')->constrained('vehicles');
             $table->foreignId('client_id')->constrained('clients');
             $table->timestamps();
         });

@@ -19,10 +19,10 @@ module.exports = {
         },
         colors: {
             'primary': '#52b69a',
-            'close': '#34a0a4',
+            'close': '#16a34a',
             'open' : '#4b5563',
             'late' : '#e11d48',
-            'secondary': '#166534',
+            'secondary': '#028090',
             'gray': {
                 50:'#f9fafb',
                 100:'#f3f4f6',
