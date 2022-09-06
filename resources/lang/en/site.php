@@ -22,6 +22,12 @@ return [
     'suggestion' => 'Suggestion',
     'options' => 'Options',
 
+    //Settings
+    'edit_settings' => 'Edit Settings',
+    'language' => 'Language',
+    'bank_name' => 'Bank Name',
+    'bank_account' => 'IBAN',
+
     //Navigation botton
     'new_document' => "New Document",
     'add_product' => 'Add Product',

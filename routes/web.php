@@ -9,6 +9,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\StatisticController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Lang;
 
 /*
@@ -42,6 +43,9 @@ Route::get('/', [ReportController::class, 'index']);
 
         //Percorsi per i fornitori
         Route::resource('companies', CompanyController::class);
+
+        //Impostazioni
+        Route::resource('settings', SettingsController::class);
 
         //Percorsi per i contatti dei fornitori
         Route::resource('contacts', ContactController::class);

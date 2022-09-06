@@ -18,8 +18,8 @@ module.exports = {
             },
         },
         colors: {
-            'primary': '#16a34a',
-            'close': '#16a34a',
+            'primary': '#52b69a',
+            'close': '#34a0a4',
             'open' : '#4b5563',
             'late' : '#e11d48',
             'secondary': '#166534',

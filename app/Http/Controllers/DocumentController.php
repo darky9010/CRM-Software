@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Report;
+use App\Models\Settings;
 use Sprain\SwissQrBill as QrBill;
 use IntlDateFormatter;
 use \Fpdf\Fpdf as FPDF;
@@ -124,20 +125,21 @@ class DocumentController extends Controller
      */
     public function createQR($locale, $id)
     {
+        $setting = Settings::first();
         $report = Report::find($id);
         $iva = floor(($report->total * $report->tax / 100) / 0.05) * 0.05;
         $qrBill = QrBill\QrBill::create();
         //Informazioni del creditore
         $qrBill->setCreditor(
             QrBill\DataGroup\Element\CombinedAddress::create(
-                'Nome ditta',
-                'Indirizzo',
-                'CAP',
+                $setting->name,
+                $setting->address,
+                $setting->postal_code,
                 'CH'
             ));
         $qrBill->setCreditorInformation(
             QrBill\DataGroup\Element\CreditorInformation::create(
-                'CH0000000000000000000' // With SCOR, this is a classic iban. QR-IBANs will not be valid here.
+                $setting->bank_account // With SCOR, this is a classic iban. QR-IBANs will not be valid here.
             ));
         //Informazioni del debitore
         $qrBill->setUltimateDebtor(
@@ -207,11 +209,11 @@ class DocumentController extends Controller
         $fpdf->ln(17.2);
         $fpdf->Cell(0,4.3,'Banca');
         $fpdf->SetX(120);
-        $fpdf->Cell(0,4.3,'Nome Banca');
+        $fpdf->Cell(0,4.3,$setting->bank_name);
         $fpdf->ln();
         $fpdf->Cell(0,4.3,'IBAN');
         $fpdf->SetX(120);
-        $fpdf->Cell(0,4.3,'CH00 0000 0000 0000 0000 0');
+        $fpdf->Cell(0,4.3,$setting->bank_account);
         //Aggiunta del QR al PDF
         $output = new QrBill\PaymentPart\Output\FpdfOutput\FpdfOutput($qrBill, 'en', $fpdf);
         $output

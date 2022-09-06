@@ -15,7 +15,8 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        //
+        $settings = Settings::all();
+        return view('settings.edit', compact('settings'));
     }
 
     /**
@@ -56,21 +57,34 @@ class SettingsController extends Controller
      * @param  \App\Models\Settings  $settings
      * @return \Illuminate\Http\Response
      */
-    public function edit(Settings $settings)
+    public function edit($locale, $id)
     {
-        //
+        $setting = Settings::find($id);
+        return view('settings.edit', compact('setting'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSettingsRequest  $request
-     * @param  \App\Models\Settings  $settings
+     * @param  \App\Http\Requests\UpdateSettingsRequest $request
+     * @param  int  $id
+     * @param  $locale
      * @return \Illuminate\Http\Response
+     *
      */
-    public function update(UpdateSettingsRequest $request, Settings $settings)
+    public function update(UpdateSettingsRequest $request,$locale, $id)
     {
-        //
+        $setting = Settings::find($id);
+        $setting
+            ->update([
+                'name' => $request->name,
+                'address' => $request->address,
+                'postal_code' => $request->postal_code,
+                'lang' => $request->lang,
+                'bank_name' => $request->bank_name,
+                'bank_account' => $request->bank_account,
+            ]);
+        return back();
     }
 
     /**

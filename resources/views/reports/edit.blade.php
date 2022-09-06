@@ -125,7 +125,7 @@
                                     <label
                                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.vehicle') }}</label>
                                     <select
-                                        class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                        class="select2-multiple block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         name="vehicle_id[]" id="vehicle_id" multiple="">
                                         @foreach($report->vehicles as $vehicle)
                                             <option value="{{ $vehicle->id }}"
@@ -252,7 +252,6 @@
                     var response = JSON.parse(response);
                     console.log(response);
                     $('#vehicle_id').empty();
-                    $('#vehicle_id').append(`<option value="0" selected>Seleziona un veicolo</option>`);
                     response.forEach(element => {
                         $('#vehicle_id').append(`<option value="${element['id']}">${element['brand']} ${element['model']} ${element['plate']} </option>`);
                     });

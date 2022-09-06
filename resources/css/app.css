@@ -21,6 +21,10 @@
     right: 1px;
     width: 20px;
 }
+
+.select2-container--default .select2-selection--multiple{
+    min-height: 46px;
+}
 .open{
     border-left-width: 8px;
     border-left-color: #4b5563;
