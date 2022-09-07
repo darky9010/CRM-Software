@@ -58,7 +58,7 @@
             $(document).ready(function() {
                 $('.select2').select2();
                 $('.select2-multiple').select2()({
-                    masimumSelectionLenght:2
+                    masimumSelectionLenght:3
                 });
             });
 

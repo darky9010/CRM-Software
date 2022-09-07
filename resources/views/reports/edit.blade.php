@@ -241,6 +241,12 @@
 
 <script>
     $(document).ready(function () {
+        var msg = '{{Session::get('alert')}}';
+        var exist = '{{Session::has('alert')}}';
+        if (exist) {
+            alert(msg);
+        }
+
         $('#client_id').on('change', function () {
             let id = $(this).val();
             $('#vehicle_id').empty();

@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->decimal('b_price'); //prezzo d'acquisto
             $table->decimal('s_price'); //prezzo di vendita
             $table->integer('stock');
+            $table->tinyInteger('check'); //1 or 0
             $table->integer('in_order'); //pezzi ordinati
             $table->integer('re_order'); //limite per il riordine
             $table->integer('location_A');

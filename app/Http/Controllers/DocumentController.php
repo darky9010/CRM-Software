@@ -42,6 +42,7 @@ class DocumentController extends Controller
         $my_template->setValue('citta', $report->client->city);
         $my_template->setValue('cantone', $report->client->region);
         $my_template->setValue('ncliente', $report->client->id);
+        //Inserimento di tutti i veicoli in un array
         foreach ($report->vehicles as $vehicle) {
             array_push($brand,$vehicle->brand);
             array_push($vmodel,$vehicle->model);
@@ -76,8 +77,6 @@ class DocumentController extends Controller
         $my_template->setValue('totaleivaincl', number_format($iva + $report->total, 2, ".", "'"));
         $my_template->setValue('totaleiva10g', number_format(round((($iva + $report->total) - (($iva + $report->total) * 3 / 100)) * 2, 1) / 2, 2, ".", "'"));
         $my_template->setValue('iva', $report->tax);
-        $my_template->setValue('r_terms', $report->r_terms);
-        $my_template->setValue('p_terms', $report->p_terms);
 
         //Inserimento dei prodotti nella tabella
         foreach ($report->products as $product) {

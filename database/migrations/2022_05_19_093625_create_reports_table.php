@@ -20,7 +20,7 @@ class CreateReportsTable extends Migration
             $table->string('r_terms'); // Termini di reclamo
             $table->string('p_terms'); // Termini di pagamento
             $table->string('tax');
-            $table->decimal('total');
+            $table->decimal('total')->nullable();
             $table->timestamp('date');
             $table->string('status');
             $table->foreignId('client_id')->constrained('clients');
