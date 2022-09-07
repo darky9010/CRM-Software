@@ -23,8 +23,7 @@ use Illuminate\Support\Facades\Lang;
 |
 */
 
-Route::get('/', [ReportController::class, 'index']);
-
+Route::redirect('/', '/it/dashboard');
 
     Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => 'setlocale'], function () {
         //Percorso per la home
