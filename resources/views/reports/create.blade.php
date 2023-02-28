@@ -8,7 +8,7 @@
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <a href="{{ route('dashboard', app()->getLocale()) }}"
-               class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded">
+               class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4">
                 <svg class="w-6 h-6 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                      xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -20,7 +20,7 @@
 
     <div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <form class="w-full" name="reports/create" id="reports/create" method="post"
                           action="{{ route('reports.store',app()->getLocale())}}">
@@ -31,7 +31,7 @@
                                     <label
                                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.type') }}</label>
                                     <select
-                                        class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                        class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         name="type" id="type">
                                         <option value="Fattura">Fattura</option>
                                         <option value="Bollettino">Bollettino</option>
@@ -44,7 +44,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.deadline_complaints') }}</label>
                                 <input type="number" id="r_terms" name="r_terms"
-                                       class="form-control appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                       class="form-control appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                        value="10" min="5"
                                        step="1">
                             </div>
@@ -52,7 +52,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.payment_terms') }}</label>
                                 <input type="number" id="p_terms" name="p_terms"
-                                       class="form-control appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                       class="form-control appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                        value="30" min="5"
                                        step="1">
                             </div>
@@ -60,7 +60,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.tax') }}</label>
                                 <input type="number" id="tax" name="tax"
-                                       class="form-control appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                       class="form-control appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                        value="7.7" min="7.7"
                                        step="0.1">
                             </div>
@@ -68,7 +68,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.status') }}</label>
                                 <select
-                                    class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     name="status" id="status">
                                     <option value="open">Aperto</option>
                                     <option value="close">Chiuso</option>
@@ -81,7 +81,7 @@
                                     <label
                                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.client') }}</label>
                                     <select
-                                        class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                        class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         name="client_id" id="client_id" required>
                                         @if(isset($client))
                                             <option
@@ -104,7 +104,7 @@
                                     <label
                                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.vehicle') }}</label>
                                     <select
-                                        class="select2-multiple block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                        class="select2-multiple block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         name="vehicle_id[]" id="vehicle_id" multiple="">
 
                                     </select>
@@ -114,7 +114,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.hours') }}</label>
                                 <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="number" id="hours" name="hours" class="form-control">
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.product') }}</label>
                                 <select
-                                    class="select2 block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    class="select2 block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     name="product_id" id="product_id">
                                     <option value="0" disabled selected>{{ __('site.product') }}</option>
                                     @foreach($products as $product)
@@ -136,7 +136,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.description') }}</label>
                                 <textarea
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="text" id="description" name="description" class="form-control"
                                     required=""></textarea>
                             </div>
@@ -144,7 +144,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.quantity') }}</label>
                                 <input
-                                    class="text-right appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="text-right appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="number" id="qta" name="qta" class="form-control" value="1" min="0" step="0.05"
                                     required="">
                             </div>
@@ -152,13 +152,13 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.price') }}</label>
                                 <input
-                                    class="text-right appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="text-right appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="number" id="sum" name="sum" class="form-control" min="00.00" required=""
                                     step="0.05">
                             </div>
                         </div>
                         <button type="submit"
-                                class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded">
+                                class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4">
                             {{ __('site.create') }}
                         </button>
                     </form>

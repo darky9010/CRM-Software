@@ -160,15 +160,16 @@ class ReportController extends Controller
         //($request->vehicle_id == 0) ? $vehicle == NULL : $vehicle = $request->vehicle_id;
         $sum = $request->sum;
         $total = $total + $sum;
-        $product = Product::find($product_id);
         $report->vehicles()->attach($request->vehicle_id);
-        if ($product->check == 1 && $request->qta <= $product->stock && $product->stock > $product->re_order || $product->check == 0) {
-            $report->products()->attach($product, ['qta' => $request->qta, 'sum' => $request->sum, 'description' => $request->description]);
-            $product->update(['stock' => $product->stock - $request->qta]);
-        } else {
-            return redirect()->route('reports.edit', ['locale' => app()->getLocale(), 'report' => $report->id])->with('alert', 'non ci sono abbastanza pezzi!');
+        if(!empty($product_id)) {
+            $product = Product::find($product_id);
+            if ($product->check == 1 && $request->qta <= $product->stock && $product->stock > $product->re_order || $product->check == 0) {
+                $report->products()->attach($product, ['qta' => $request->qta, 'sum' => $request->sum, 'description' => $request->description]);
+                $product->update(['stock' => $product->stock - $request->qta]);
+            } else {
+                return redirect()->route('reports.edit', ['locale' => app()->getLocale(), 'report' => $report->id])->with('alert', 'non ci sono abbastanza pezzi!');
+            }
         }
-
         $report
             ->update([
                 'type' => $request->type,

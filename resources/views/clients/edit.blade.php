@@ -7,7 +7,7 @@
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <a href="{{ route('clients.index', app()->getLocale()) }}"
-               class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded">
+               class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4">
                 <svg class="w-6 h-6 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                      xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -19,7 +19,7 @@
 
     <div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <form class="w-full" name="clients/update" id="clients/update" method="post"
                           action="{{ route('clients.update',['locale'=>app()->getLocale(),'client'=>$client->id])}}">
@@ -30,7 +30,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.type') }}</label>
                                 <select
-                                    class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     name="title" id="title">
                                     <option value="Signore"
                                             @if($client->title == 'Signore')
@@ -56,7 +56,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.individual_company') }}</label>
                                 <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="text" id="name" name="name" value="{{$client->name}}" class="form-control"
                                     required="">
                             </div>
@@ -64,7 +64,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.surname') }}</label>
                                 <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="text" id="surname" name="surname" value="{{$client->surname}}"
                                     class="form-control">
                             </div>
@@ -72,7 +72,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.phone') }}</label>
                                 <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="text" id="phone" name="phone" value="{{$client->phone}}"
                                     class="form-control" required="">
                             </div>
@@ -80,7 +80,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.mail') }}</label>
                                 <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="text" id="mail" name="mail" value="{{$client->mail}}"
                                     class="form-control" required="">
                             </div>
@@ -90,7 +90,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.addess') }}</label>
                                 <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="text" id="address" name="address" value="{{$client->address}}"
                                     class="form-control" required="">
                             </div>
@@ -98,7 +98,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.postal_code') }}</label>
                                 <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="text" id="postal_code" name="postal_code" value="{{$client->postal_code}}"
                                     class="form-control" required="">
                             </div>
@@ -106,7 +106,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.city') }}</label>
                                 <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="text" id="city" name="city" value="{{$client->city}}" class="form-control"
                                     required="">
                             </div>
@@ -114,7 +114,7 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.region') }}</label>
                                 <input
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="text" id="region" name="region" value="{{$client->region}}"
                                     class="form-control" required="">
                             </div>
@@ -124,13 +124,13 @@
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.note') }}</label>
                                 <textarea
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     name="note" class="form-control" >{{$client->note}}</textarea>
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full md:w-3/3 px-3">
-                                <a class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded"
+                                <a class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4"
                                    href="{{ route('vehicle.create',['locale'=>app()->getLocale(),'client_id'=>$client->id]) }}">
                                     {{ __('site.add_vehicle') }}
                                 </a>
@@ -139,7 +139,7 @@
                         <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full md:w-3/3 px-3">
                                 <button type="submit"
-                                        class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded">
+                                        class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4">
                                     {{ __('site.save') }}
                                 </button>
                             </div>
@@ -173,7 +173,7 @@
                             @foreach($client->vehicles as $vehicle)
                                 <tr class="hover:bg-gray-200">
                                     <input
-                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                         type="hidden" id="vehicle_id" name="vehicle_id" value="{{ $vehicle->id }}"
                                         class="form-control" required="">
                                     <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">

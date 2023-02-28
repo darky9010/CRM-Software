@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','description','b_price','s_price','stock','in_order','re_order','location_A','location_B','location_C','unit'];
+    protected $fillable = ['name','description','b_price','s_price','stock','check','in_order','re_order','location_A','location_B','location_C','unit'];
 
     public function companies(){
         return $this->belongsToMany(Company::class)->withPivot('serial_n')->withTimestamps();
