@@ -150,12 +150,19 @@ class ReportController extends Controller
         $d = $request->type[0];
         $year = date('y',);
         $month = date('m');
+
         //se il prodotto è già presente lo elimino e aggiorno il totale e la descrizione
         if ($report->products()->where('product_id', '=', $product_id)->exists()) {
+            $qta = $report->products()->where('product_id', '=', $product_id)->value('qta');
+            $product = Product::find($product_id);
+            $product->update([
+                'stock' => $product->stock + $qta,
+            ]);
             $sum = $report->products()->where('product_id', '=', $product_id)->value('sum');
             $total = $total - $sum;
             $report->products()->detach($product_id);
         }
+
         $report->vehicles()->detach();
         //($request->vehicle_id == 0) ? $vehicle == NULL : $vehicle = $request->vehicle_id;
         $sum = $request->sum;
@@ -196,8 +203,13 @@ class ReportController extends Controller
     public function removeProduct($locale, $report, $product)
     {
         $sum = Report::find($report)->products()->where('product_id', '=', $product)->value('sum');
+        $qta = Report::find($report)->products()->where('product_id', '=', $product)->value('qta');
         $total = Report::where('id', $report)->value('total');
         $total = $total - $sum;
+        $dproduct = Product::find($product);
+        $dproduct->update([
+            'stock' => $dproduct->stock + $qta,
+        ]);
         Report::find($report)->update(['total' => $total]);
         Report::find($report)->products()->detach($product);
         return back();
@@ -227,6 +239,14 @@ class ReportController extends Controller
      */
     public function destroy($locale, $id, $type)
     {
+        $pros = Product::all('id');
+        foreach ($pros as $pro) {
+            $products = Report::find($id)->products()->wherePivot('product_id', $pro->id)->get();
+            foreach ($products as $product) {
+                $new_stock = $product->stock + $product->pivot->qta;
+                Product::find($product->id)->update(['stock' => $new_stock]);
+            }
+        }
         Report::find($id)->products()->wherePivot('report_id', $id)->detach();
         Report::where('id', $id)->where('type', $type)->delete();
         return redirect()->route('dashboard', app()->getLocale());

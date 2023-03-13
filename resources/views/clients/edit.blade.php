@@ -208,7 +208,7 @@
                                               action="{{ route('vehicles.destroy',['locale'=>app()->getLocale(),'vehicle'=>$vehicle->id]) }}">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-                                            <button class="cursor-not-allowed font-medium text-primary dark:text-secondary" type="submit" disabled>
+                                            <button class="font-medium text-primary dark:text-secondary" type="submit">
                                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
