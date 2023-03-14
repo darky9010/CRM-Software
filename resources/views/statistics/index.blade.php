@@ -29,6 +29,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </x-app-layout>
 
 {!! $reportYear->renderChartJsLibrary() !!}

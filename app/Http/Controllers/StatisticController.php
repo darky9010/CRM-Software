@@ -35,7 +35,7 @@ class StatisticController extends Controller
             'report_type' => 'group_by_relationship',
             'model' => 'App\Models\Report',
             'relationship_name' => 'client',
-            'group_by_field' => 'name, surname',
+            'group_by_field' => 'surname',
             'chart_type' => 'pie',
         ];
         $reportClient = new LaravelChart($chart_options);

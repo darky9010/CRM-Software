@@ -13,7 +13,7 @@ This web application is created for the management of a small company.
 It helps to: 
 
 - Creating and managing simple and totally customizable bill with a Word template.
-- Creating QRBill.
+- Creating QRBill in a separate pdf file.
 - Managing client and supplier.
 - Managing product and storage.
 - View statistics (beta).
