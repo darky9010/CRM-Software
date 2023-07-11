@@ -6,7 +6,7 @@
     </x-slot>
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-700 overflow-hidden shadow-sm">
+            <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="p-6">
                     <div class="flex flex-wrap -mx-3">
                         <div class="w-full md:w-1/5 px-3">
@@ -25,7 +25,7 @@
     </div>
     <div class="pb-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm">
+            <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="relative overflow-x-auto shadow-md">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-s text-white uppercase bg-primary">
@@ -56,7 +56,7 @@
                             </th>
                         </tr>
                         </thead>
-                        <tbody class="bg-white dark:bg-gray-700">
+                        <tbody class="bg-white dark:bg-slate-800">
                         @foreach($products as $product)
                             <tr class="border-slate-500 dark:border-gray-500 hover:bg-gray-200 dark:hover:bg-gray-500 border-b dark:border-gray-700">
                                 <td class="px-6 py-4 font-medium text-gray-900 dark:text-white ">{{ $product->name }}

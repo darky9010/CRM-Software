@@ -30,8 +30,7 @@ class ReportController extends Controller
             $reports = Report::where('status', 'open')->paginate(10);
             return view('dashboard', compact('reports', 'clients', 'setting'));
         } else {
-            if
-            ($request->status != null && $request->type != null && $request->client != 0) {
+            if ($request->status != null && $request->type != null && $request->client != 0) {
                 ($request->status == 0) ? $reports = Report::where('client_id', $request->client)
                     ->where('type', $request->type)
                     ->paginate(10) : $reports = Report::where('status', $request->status)

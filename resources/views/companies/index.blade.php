@@ -6,8 +6,8 @@
     </x-slot>
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm">
-                <div class="p-6 bg-white border-b border-gray-200">
+            <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
+                <div class="p-6">
                     <div class="flex flex-wrap -mx-3">
                         <div class="w-full md:w-1/5 px-3">
                             <a href="{{ route('companies.create', app()->getLocale()) }}"
@@ -25,10 +25,10 @@
     </div>
     <div class="pb-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm">
+            <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="data overflow-x-auto shadow-md">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-s text-white uppercase bg-primary dark:bg-secondary dark:text-white">
+                        <thead class="text-s text-white uppercase bg-primary dark:text-white">
                         <tr>
                             <th class="px-6 py-3">
                                 {{ __('site.name') }}
@@ -73,7 +73,7 @@
                                         {{ csrf_field() }}
                                         {{ method_field('GET') }}
                                         <button type="submit"
-                                                class="font-medium text-primary dark:text-secondary">
+                                                class="font-medium text-primary">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -88,7 +88,7 @@
                                         {{ csrf_field() }}
                                         {{ method_field('GET') }}
                                         <button type="submit"
-                                                class="font-medium text-primary dark:text-secondary">
+                                                class="font-medium text-primary">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -102,7 +102,7 @@
                                           action="{{ route('companies.destroy',['locale'=>app()->getLocale(),'company'=>$company->id]) }}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button class="font-medium text-primary dark:text-secondary" type="submit">
+                                        <button class="font-medium text-primary" type="submit">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

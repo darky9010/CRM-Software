@@ -2,44 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\Report;
+use App\Models\User;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Illuminate\Support\Facades\DB;
 
 class StatisticController extends Controller
 {
-    public function statistics($locale){
-        $chart_options = [
-            'chart_title' => 'Bills in years',
-            'report_type' => 'group_by_date',
-            'model' => 'App\Models\Report',
-            'group_by_field' => 'created_at',
-            'group_by_period' => 'year',
-            'chart_type' => 'line',
-        ];
-        $reportYear = new LaravelChart($chart_options);
 
-        $chart_options = [
-            'chart_title' => 'Bills in month',
-            'report_type' => 'group_by_date',
-            'model' => 'App\Models\Report',
-            'group_by_field' => 'created_at',
-            'group_by_period' => 'month',
-            'chart_type' => 'bar',
-        ];
-        $reportMonth = new LaravelChart($chart_options);
+    public function index(){
+        $reports = Report::select(DB::raw("MONTHNAME(date) as month, SUM(reports.total) as total"))
+            ->groupBy(DB::raw("month"))
+            ->orderBy('month','ASC')
+            ->pluck('total','month');
 
-        $chart_options = [
-            'chart_title' => 'Bills for client',
-            'report_type' => 'group_by_relationship',
-            'model' => 'App\Models\Report',
-            'relationship_name' => 'client',
-            'group_by_field' => 'surname',
-            'chart_type' => 'pie',
-        ];
-        $reportClient = new LaravelChart($chart_options);
+        $labels = $reports->keys();
+        $data = $reports->values();
 
-        return view('statistics.index', compact('reportYear','reportMonth','reportClient'));
+        return view('statistics.index', compact('labels', 'data'));
     }
 }

@@ -1,5 +1,5 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="text-s text-white uppercase bg-primary dark:bg-secondary dark:text-white">
+    <thead class="text-s text-white uppercase bg-primary dark:text-white">
     <tr>
         <th class="px-6 py-3">
             {{ __('site.individual_company') }}
@@ -43,7 +43,7 @@
                     {{ csrf_field() }}
                     {{ method_field('GET') }}
                     <button type="submit"
-                            class="font-medium text-primary dark:text-secondary">
+                            class="font-medium text-primary">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                              xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -58,7 +58,7 @@
                     {{ csrf_field() }}
                     {{ method_field('GET') }}
                     <button type="submit"
-                            class="font-medium text-primary dark:text-secondary">
+                            class="font-medium text-primary">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                              xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -72,7 +72,7 @@
                       action="{{ route('clients.destroy',['locale'=>app()->getLocale(),'client'=>$client->id]) }}">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <button class="font-medium text-primary dark:text-secondary" type="submit">
+                    <button class="font-medium text-primary" type="submit">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                              xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

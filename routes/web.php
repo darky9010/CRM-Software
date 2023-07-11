@@ -62,7 +62,7 @@ Route::redirect('/', '/it/dashboard');
         Route::get('document/{id}/qr', [DocumentController::class, 'createQR'])->name('document.qr');
         Route::get('instruction/{filename}', [DocumentController::class,'getInstruction'])->name('instruction');
 
-        Route::get('statistics',[StatisticController::class,'statistics'])->name('statistics');
+        Route::get('statistics',[StatisticController::class,'index'])->name('statistics');
     });
 
     //Percorsi per le chiamate ajax

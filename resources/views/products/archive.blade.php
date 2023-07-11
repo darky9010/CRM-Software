@@ -7,7 +7,7 @@
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm">
+            <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="relative overflow-x-auto shadow-md">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-s text-white uppercase bg-primary">
@@ -40,7 +40,7 @@
                         </thead>
                         <tbody class="bg-white dark:bg-slate-800">
                         @foreach($products as $product)
-                            <tr class="bg-white hover:bg-gray-200 border-b dark:bg-gray-800 dark:border-gray-700">
+                            <tr class="bg-white hover:bg-gray-200 border-b dark:bg-slate-800 dark:border-gray-700">
                                 <td class="px-6 py-4">{{ $product->name }}
                                 </td>
                                 <td class="px-6 py-4">
@@ -58,7 +58,7 @@
                                         {{ csrf_field() }}
                                         {{ method_field('GET') }}
                                         <button type="submit"
-                                                class="font-medium text-primary dark:text-secondary">
+                                                class="font-medium text-primary">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -72,7 +72,7 @@
                                           action="{{ route('products.destroy',['locale'=>app()->getLocale(),'product'=>$product->id]) }}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button class="font-medium text-primary dark:text-secondary" type="submit">
+                                        <button class="font-medium text-primary" type="submit">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

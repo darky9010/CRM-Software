@@ -6,7 +6,7 @@
     </x-slot>
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-700 overflow-hidden shadow-sm">
+            <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="p-6">
                     <div class="flex flex-wrap -mx-3">
                         <div class="px-3">
@@ -64,12 +64,12 @@
     </div>
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-700 overflow-hidden shadow-sm">
+            <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="p-6">
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-2/12 px-3 mb-6 md:mb-0">
                             <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.type') }}</label>
+                                class="block uppercase tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2">{{ __('site.type') }}</label>
                             <select
                                 class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 name="type" id="type">
@@ -81,7 +81,7 @@
                         </div>
                         <div class="w-full md:w-2/12 px-3 mb-6 md:mb-0">
                             <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.status') }}</label>
+                                class="block uppercase tracking-wide text-gray-700 text-xs dark:text-white font-bold mb-2">{{ __('site.status') }}</label>
                             <select
                                 class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 name="status" id="status">
@@ -92,7 +92,7 @@
                         </div>
                         <div class="w-full md:w-3/12 px-3 mb-6 md:mb-0">
                             <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.client') }}</label>
+                                class="block uppercase tracking-wide text-gray-700 text-xs dark:text-white font-bold mb-2">{{ __('site.client') }}</label>
                             <select
                                 class="select2 block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 name="client" id="client">
@@ -110,8 +110,8 @@
     </div>
     <div class="pb-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-gray-50 dark:bg-gray-800">
-                <div class="bg-white overflow-hidden shadow-sm ">
+            <div class="bg-slate-50 dark:bg-slate-800">
+                <div class="bg-white overflow-hidden dark:bg-slate-800 shadow-sm ">
                     <div class="data overflow-x-auto shadow-md">
                         @include('reports.child')
                     </div>
