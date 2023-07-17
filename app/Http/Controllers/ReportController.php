@@ -23,13 +23,16 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         $setting = Settings::select('logo')->first();
+        //select all client who have a report
         $clients = Report::select('client_id')
             ->groupBy('client_id')
             ->get();
+        //Shows all open reports
         if (!$request->ajax()) {
             $reports = Report::where('status', 'open')->paginate(10);
             return view('dashboard', compact('reports', 'clients', 'setting'));
         } else {
+            //Rules for ajax request
             if ($request->status != null && $request->type != null && $request->client != 0) {
                 ($request->status == 0) ? $reports = Report::where('client_id', $request->client)
                     ->where('type', $request->type)
@@ -69,7 +72,8 @@ class ReportController extends Controller
         $products = Product::all();
         $clients = Client::where('id', '<>', $id)->get();
         $client = Client::find($id);
-        $vehicles = Vehicle::all();
+        //Get the client vehicles whit eloquent
+        $vehicles = $client->vehicles();
         return view('reports.create', compact('products', 'clients', 'client', 'vehicles'));
     }
 
@@ -83,7 +87,7 @@ class ReportController extends Controller
     public function store(StoreReportRequest $request)
     {
         $report = new Report;
-        $d = $request->type[0];
+        $d = $request->type[0]; //first letter of the type
         $year = date('y',);
         $month = date('m');
         $report->type = $request->type;
@@ -93,14 +97,15 @@ class ReportController extends Controller
         $report->date = now();
         $report->status = $request->status;
         $report->client_id = $request->client_id;
+        //Save to have the report id
         $report->save();
-        //Salvo per avere l'id del report
+        //Creating the report name with the first letter of the type the year and the month and the ID ex F2307-0004
         $report->name = $d . $year . $month . "-" . str_pad($report->id, 4, "0", STR_PAD_LEFT);
         $report->save();
+        //add report to the report_vehicle table
         $report->vehicles()->attach($request->vehicle_id);
         $product = Product::find($request->product_id);
-
-        //check per le quantità in magazzino e aggiornamento delle quantità all'inseriemnto nel report
+        //check the product quantity in the storage and update it
         if ($product->check == 1 && $request->qta <= $product->stock && $product->stock > $product->re_order || $product->check == 0) {
             $report->products()->attach($product, ['qta' => $request->qta, 'sum' => $request->sum, 'description' => $request->description]);
             $report->total = $request->sum;
@@ -108,7 +113,7 @@ class ReportController extends Controller
             $product->update(['stock' => $product->stock - $request->qta]);
             return redirect()->route('reports.edit', ['locale' => app()->getLocale(), 'report' => $report->id]);
         } else {
-            return redirect()->route('reports.edit', ['locale' => app()->getLocale(), 'report' => $report->id])->with('alert', 'non ci sono abbastanza pezzi!');
+            return redirect()->route('reports.edit', ['locale' => app()->getLocale(), 'report' => $report->id])->with('alert', 'In stock ci sono solo:'.$product->stock.'pezzi');
         }
     }
 
@@ -149,8 +154,9 @@ class ReportController extends Controller
         $d = $request->type[0];
         $year = date('y',);
         $month = date('m');
+        //Devo pensare a cora fare con il nome della fattura nel caso venga cambiato il tipo e devo trovare un modo per gestire le date
 
-        //se il prodotto è già presente lo elimino e aggiorno il totale e la descrizione
+        //delete the product if exist and update total and description
         if ($report->products()->where('product_id', '=', $product_id)->exists()) {
             $qta = $report->products()->where('product_id', '=', $product_id)->value('qta');
             $product = Product::find($product_id);
@@ -173,7 +179,7 @@ class ReportController extends Controller
                 $report->products()->attach($product, ['qta' => $request->qta, 'sum' => $request->sum, 'description' => $request->description]);
                 $product->update(['stock' => $product->stock - $request->qta]);
             } else {
-                return redirect()->route('reports.edit', ['locale' => app()->getLocale(), 'report' => $report->id])->with('alert', 'non ci sono abbastanza pezzi!');
+                return redirect()->route('reports.edit', ['locale' => app()->getLocale(), 'report' => $report->id])->with('alert', 'In stock ci sono solo: '.$product->stock.' pezzi');
             }
         }
         $report
@@ -205,6 +211,7 @@ class ReportController extends Controller
         $qta = Report::find($report)->products()->where('product_id', '=', $product)->value('qta');
         $total = Report::where('id', $report)->value('total');
         $total = $total - $sum;
+        //Update product in storage
         $dproduct = Product::find($product);
         $dproduct->update([
             'stock' => $dproduct->stock + $qta,
@@ -223,6 +230,7 @@ class ReportController extends Controller
      */
     public function delete($locale, $id, $type)
     {
+        //Create the delete message box
         $report = Report::where('id', $id)->where('type', $type)->get()->first();
         return view('reports.delete', compact('report'));
     }

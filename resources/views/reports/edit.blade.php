@@ -19,8 +19,8 @@
 
     <div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm">
-                <div class="p-6 bg-white border-b border-gray-200">
+            <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
+                <div class="p-6">
                     <form class="w-full" name="reports/edit" id="reports/edit" method="post"
                           action="{{ route('reports.update',['locale'=>app()->getLocale(),'report'=>$report->id]) }}">
                         @csrf
@@ -29,7 +29,7 @@
                             <div class="w-full md:w-1/4 px-3">
                                 <div class="relative">
                                     <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.type') }}</label>
+                                        class="block uppercase tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2">{{ __('site.type') }}</label>
                                     <select
                                         class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         name="type" id="type">
@@ -62,21 +62,21 @@
                             </div>
                             <div class="w-full md:w-2/12 px-3">
                                 <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.deadline_complaints') }}</label>
+                                    class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.deadline_complaints') }}</label>
                                 <input type="number" id="r_terms" name="r_terms"
                                        class="form-control appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                        value="{{$report->r_terms}}" min="5" step="1">
                             </div>
                             <div class="w-full md:w-2/12 px-3">
                                 <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.payment_terms') }}</label>
+                                    class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.payment_terms') }}</label>
                                 <input type="number" id="p_terms" name="p_terms"
                                        class="form-control appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                        value="{{$report->p_terms}}" min="5" step="1">
                             </div>
                             <div class="w-full md:w-2/12 px-3">
                                 <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.tax') }}</label>
+                                    class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.tax') }}</label>
                                 <input type="number" id="tax" name="tax"
                                        class="form-control appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                        value="{{$report->tax}}"
@@ -84,7 +84,7 @@
                             </div>
                             <div class="w-full md:w-2/12 px-3">
                                 <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.status') }}</label>
+                                    class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.status') }}</label>
                                 <select
                                     class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     name="status" id="status">
@@ -107,7 +107,7 @@
                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                 <div class="relative">
                                     <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.client') }}</label>
+                                        class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.client') }}</label>
                                     <select
                                         class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         name="client_id" id="client_id">
@@ -123,7 +123,7 @@
                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                 <div class="relative">
                                     <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.vehicle') }}</label>
+                                        class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.vehicle') }}</label>
                                     <select
                                         class="select2-multiple block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         name="vehicle_id[]" id="vehicle_id" multiple="">
@@ -136,7 +136,7 @@
                             </div>
                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                                 <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.hours') }}</label>
+                                    class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.hours') }}</label>
                                 <input
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="text" id="hours" name="hours" class="form-control"
@@ -146,7 +146,7 @@
                         <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full md:w-4/12 px-3 mb-6 md:mb-0">
                                 <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.product') }}</label>
+                                    class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.product') }}</label>
                                 <select
                                     class="select2 block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     name="product_id" id="product_id">
@@ -159,7 +159,7 @@
                             </div>
                             <div class="w-full md:w-4/12 px-3 mb-6 md:mb-0">
                                 <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.description') }}</label>
+                                    class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.description') }}</label>
                                 <textarea
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     style="white-space: pre-wrap;" id="description" name="description"
@@ -167,7 +167,7 @@
                             </div>
                             <div class="w-full md:w-2/12 px-3 mb-6 md:mb-0">
                                 <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.quantity') }}</label>
+                                    class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.quantity') }}</label>
                                 <input
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="number" id="qta" name="qta" class="form-control" value="1" min="0.05"
@@ -175,7 +175,7 @@
                             </div>
                             <div class="w-full md:w-2/12 px-3 mb-6 md:mb-0">
                                 <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.price') }}</label>
+                                    class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.price') }}</label>
                                 <input
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="number" id="sum" name="sum" class="form-control" min="00.00"
