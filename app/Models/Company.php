@@ -11,7 +11,7 @@ class Company extends Model
     protected $fillable = ['name','initials','address','address1','mail','postal_code','city','region','phone','site'];
 
     public function products(){
-        return $this->belongsToMany(Product::class)->withPivot('serial_n')->withTimestamps();;
+        return $this->belongsToMany(Product::class)->withPivot('serial_n')->withTimestamps();
     }
 
     public function contacts(){

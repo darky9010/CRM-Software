@@ -22,7 +22,7 @@ class DocumentController extends Controller
 
     public function update($locale, $id)
     {
-        $fmt = datefmt_create('it_IT',IntlDateFormatter::FULL,IntlDateFormatter::FULL,'Europe/Rome',IntlDateFormatter::GREGORIAN,'dd MMMM yyyy');
+        $fmt = datefmt_create('it_IT', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Europe/Rome', IntlDateFormatter::GREGORIAN, 'dd MMMM yyyy');
         $report = Report::find($id);
         $prodotti = [];
         $brand = [];
@@ -36,25 +36,26 @@ class DocumentController extends Controller
         //informazioni cliente
         $my_template->setValue('titolo', $report->client->title);
         $my_template->setValue('nome', htmlspecialchars($report->client->name));
-        $my_template->setValue('cognome',$report->client->surname);
+        $my_template->setValue('cognome', $report->client->surname);
         $my_template->setValue('indirizzo', $report->client->address);
         $my_template->setValue('cap', $report->client->postal_code);
         $my_template->setValue('citta', $report->client->city);
         $my_template->setValue('cantone', $report->client->region);
         $my_template->setValue('ncliente', $report->client->id);
         //Inserimento di tutti i veicoli in un array
-        foreach ($report->vehicles as $vehicle) {
-            array_push($brand,$vehicle->brand);
-            array_push($vmodel,$vehicle->model);
-            array_push($plate,$vehicle->plate);
-            array_push($hours,$vehicle->hours);
-        }
-        if (!is_null($vehicle->id)) {
+        if (!is_null($report->wehicles)) {
+            foreach ($report->vehicles as $vehicle) {
+                array_push($brand, $vehicle->brand);
+                array_push($vmodel, $vehicle->model);
+                array_push($plate, $vehicle->plate);
+                array_push($hours, $vehicle->hours);
+            }
+
             //informazioni veicolo
-            $my_template->setValue('veicolo', implode(' ',$brand));
-            $my_template->setValue('modello', implode(' ',$vmodel));
-            $my_template->setValue('targa', implode(' ',$plate));
-            $my_template->setValue('ore', implode(' ',$hours));
+            $my_template->setValue('veicolo', implode(' ', $brand));
+            $my_template->setValue('modello', implode(' ', $vmodel));
+            $my_template->setValue('targa', implode(' ', $plate));
+            $my_template->setValue('ore', implode(' ', $hours));
             $my_template->setValue('veicololab', "Veicoli");
             $my_template->setValue('modellolab', "Modelli");
             $my_template->setValue('targalab', "Targhe");
@@ -70,8 +71,8 @@ class DocumentController extends Controller
             $my_template->setValue('orelab', "");
         }
         $my_template->setValue('tipodoc', $report->type);
-        $my_template->setValue('nomedoc',$report->name);
-        $my_template->setValue('data', datefmt_format($fmt,strtotime($report->date)));
+        $my_template->setValue('nomedoc', $report->name);
+        $my_template->setValue('data', datefmt_format($fmt, strtotime($report->date)));
         $my_template->setValue('totaleivaescl', number_format($report->total, 2, ".", "'"));
         $my_template->setValue('totaleiva', number_format($iva, 2, ".", "'"));
         $my_template->setValue('totaleivaincl', number_format($iva + $report->total, 2, ".", "'"));
@@ -85,9 +86,9 @@ class DocumentController extends Controller
                 foreach ($lines as $line) {
                     $description = $description . "<w:t xml:space='preserve'>" . $line . "</w:t><w:br/>";
                 }
-                array_push($prodotti, ['articolo' => $product->name, 'descrizione' => "<w:r>" . $description . "</w:r>", 'qta' => $product->pivot->qta, 'unita' => $product->unit, 'prezzo' => number_format(round(($product->pivot->sum/$product->pivot->qta) / 0.05) * 0.05, 2, ".", "'"), 'somma' => number_format($product->pivot->sum, 2, ".", "'")]);
+                array_push($prodotti, ['articolo' => $product->name, 'descrizione' => "<w:r>" . $description . "</w:r>", 'qta' => $product->pivot->qta, 'unita' => $product->unit, 'prezzo' => number_format(round(($product->pivot->sum / $product->pivot->qta) / 0.05) * 0.05, 2, ".", "'"), 'somma' => number_format($product->pivot->sum, 2, ".", "'")]);
             } else {
-                array_push($prodotti, ['articolo' => $product->name, 'descrizione' => $product->pivot->description, 'qta' => $product->pivot->qta, 'unita' => $product->unit, 'prezzo' => number_format(round(($product->pivot->sum/$product->pivot->qta) / 0.05) * 0.05, 2, ".", "'"), 'somma' => number_format($product->pivot->sum, 2, ".", "'")]);
+                array_push($prodotti, ['articolo' => $product->name, 'descrizione' => $product->pivot->description, 'qta' => $product->pivot->qta, 'unita' => $product->unit, 'prezzo' => number_format(round(($product->pivot->sum / $product->pivot->qta) / 0.05) * 0.05, 2, ".", "'"), 'somma' => number_format($product->pivot->sum, 2, ".", "'")]);
             }
             $description = "";
         }
@@ -179,40 +180,40 @@ class DocumentController extends Controller
         }
 
         //Creazione del file pdf
-        define('FPDF_FONTPATH',public_path().'/fonts');
+        define('FPDF_FONTPATH', public_path() . '/fonts');
         $fpdf = new FPDF('P', 'mm', 'A4');
-       // $fpdf->fontpath = 'D:/github.com/darky910/MM-Agricole/public/fonts';
-        $fpdf->AddFont('Akzidenz','','Akzidenz-grotesk-roman_0.php');
-        $fpdf->AddFont('Akzidenz','B','AkzidenzGrotesk-bold_0.php');
-        $fpdf->SetMargins(20,50,20);
+        // $fpdf->fontpath = 'D:/github.com/darky910/MM-Agricole/public/fonts';
+        $fpdf->AddFont('Akzidenz', '', 'Akzidenz-grotesk-roman_0.php');
+        $fpdf->AddFont('Akzidenz', 'B', 'AkzidenzGrotesk-bold_0.php');
+        $fpdf->SetMargins(20, 50, 20);
         $fpdf->AddPage();
         /*Logo
         *  $fpdf->Image(public_path(''),18,8,68);
         */
-        $fpdf->SetFont('Akzidenz','B',10);
-        $fpdf->Cell(0,4.3,$report->type.' '.$report->name);
+        $fpdf->SetFont('Akzidenz', 'B', 10);
+        $fpdf->Cell(0, 4.3, $report->type . ' ' . $report->name);
         $fpdf->ln(8.6);
-        $fpdf->SetFont('Akzidenz','',10);
-        $fpdf->Cell(0,4.3,'Termine di reclamo');
+        $fpdf->SetFont('Akzidenz', '', 10);
+        $fpdf->Cell(0, 4.3, 'Termine di reclamo');
         $fpdf->SetX(120);
-        $fpdf->Cell(0,4.3,'10 giorni');
+        $fpdf->Cell(0, 4.3, '10 giorni');
         $fpdf->ln(8.6);
-        $fpdf->Cell(0,4.3,'Termine di pagamento');
+        $fpdf->Cell(0, 4.3, 'Termine di pagamento');
         $fpdf->SetX(120);
-        $fpdf->Cell(0,4.3,'10 giorni 3% di sconto');
-        $fpdf->Cell(0,4.3,number_format(round((($iva + $report->total) - (($iva + $report->total) * 3 / 100)) * 2, 1) / 2, 2, ".", "'"),0,0,'R');
+        $fpdf->Cell(0, 4.3, '10 giorni 3% di sconto');
+        $fpdf->Cell(0, 4.3, number_format(round((($iva + $report->total) - (($iva + $report->total) * 3 / 100)) * 2, 1) / 2, 2, ".", "'"), 0, 0, 'R');
         $fpdf->ln();
         $fpdf->SetX(120);
-        $fpdf->Cell(0,4.3,'30 giorni netto');
-        $fpdf->Cell(0,4.3,number_format($iva + $report->total, 2, ".", "'"),0,0,'R');
+        $fpdf->Cell(0, 4.3, '30 giorni netto');
+        $fpdf->Cell(0, 4.3, number_format($iva + $report->total, 2, ".", "'"), 0, 0, 'R');
         $fpdf->ln(17.2);
-        $fpdf->Cell(0,4.3,'Banca');
+        $fpdf->Cell(0, 4.3, 'Banca');
         $fpdf->SetX(120);
-        $fpdf->Cell(0,4.3,$setting->bank_name);
+        $fpdf->Cell(0, 4.3, $setting->bank_name);
         $fpdf->ln();
-        $fpdf->Cell(0,4.3,'IBAN');
+        $fpdf->Cell(0, 4.3, 'IBAN');
         $fpdf->SetX(120);
-        $fpdf->Cell(0,4.3,$setting->bank_account);
+        $fpdf->Cell(0, 4.3, $setting->bank_account);
         //Aggiunta del QR al PDF
         $output = new QrBill\PaymentPart\Output\FpdfOutput\FpdfOutput($qrBill, 'en', $fpdf);
         $output

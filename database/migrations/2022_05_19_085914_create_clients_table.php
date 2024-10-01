@@ -20,11 +20,13 @@ class CreateClientsTable extends Migration
             $table->string('surname');
             $table->string('address');
             $table->string('address1')->nullable();
-            $table->string('mail')->nullable();
-            $table->string('phone');
             $table->string('postal_code');
             $table->string('city');
             $table->string('region');
+            $table->date('birthday')->nullable();
+            $table->string('phone');
+            $table->string('mail')->nullable();
+            $table->tinyInteger('ffse')->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
         });
