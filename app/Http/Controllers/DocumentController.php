@@ -50,7 +50,6 @@ class DocumentController extends Controller
                 array_push($plate, $vehicle->plate);
                 array_push($hours, $vehicle->hours);
             }
-
             //informazioni veicolo
             $my_template->setValue('veicolo', implode(' ', $brand));
             $my_template->setValue('modello', implode(' ', $vmodel));
