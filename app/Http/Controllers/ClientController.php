@@ -27,7 +27,7 @@ class ClientController extends Controller
             $clients = Client::where('id', $request->client)->orderBy('name', 'asc')->paginate(10);
             return view('clients.child', compact('clients', 'names', 'title'));
         } elseif ($request->client == 0 && $request->title != 0) {
-            ($request->title == 1) ? $clients = Client::where('title', '!=', 'Ditta')->orderBy('name', 'asc')->paginate(10) : $clients = Client::where('title', 'Ditta')->orderBy('name', 'asc')->paginate(10);
+            ($request->title == 1) ? $clients = Client::where('language', '!=', 'f')->orderBy('name', 'asc')->paginate(10) : $clients = Client::where('language', 'f')->orderBy('name', 'asc')->paginate(10);
             return view('clients.child', compact('clients', 'names', 'title'));
         } else {
             $clients = Client::orderBy('name', 'asc')->paginate(10);

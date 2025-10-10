@@ -11,6 +11,11 @@ class Client extends Model
     use HasFactory;
     protected $fillable = ['title','name','surname','address','address1','mail','phone','postal_code','city','region','note'];
 
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class)->withPivot('note')->withTimestamps();
+    }
+
     public function vehicles(){
         return $this->hasMany(Vehicle::class);
     }

@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="p-6">
                     <div class="flex flex-wrap -mx-3">
@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="p-6">
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -43,13 +43,13 @@
                         </div>
                         <div class="w-full md:w-2/12 px-3 mb-6 md:mb-0">
                             <label
-                                class="block uppercase tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2">{{ __('site.type') }}</label>
+                                class="block uppercase tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2">{{ __('site.language') }}</label>
                             <select
                                 class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 name="title" id="title">
                                 <option value="0" selected>{{__('site.all')}}</option>
-                                <option value="1">{{__('site.individual')}}</option>
-                                <option value="2">{{__('site.company')}}</option>
+                                <option value="1">Deutsch</option>
+                                <option value="2">Frenc</option>
                             </select>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
         </div>
     </div>
     <div class="pb-10">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="data overflow-x-auto shadow-md">
                     @include('clients.child')

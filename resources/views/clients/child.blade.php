@@ -11,7 +11,7 @@
             {{ __('site.contacts') }}
         </th>
         <th class="px-6 py-3">
-            {{ __('site.vehicles') }}
+            {{ __('site.category') }}
         </th>
         <th class="px-6 py-3 text-center">
             {{ __('site.new_document') }}
@@ -27,14 +27,14 @@
     <tbody>
     @foreach($clients as $client)
         <tr class="bg-white hover:bg-gray-200 border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="px-6 py-4">{{ $client->name }} {{ $client->surname }}</td>
+            <td class="px-6 py-4">{{ $client->title}} {{ $client->rank }} {{ $client->name }} {{ $client->surname }}</td>
             <td class="px-6 py-4">{{$client->address}}
                 <br>{{$client->postal_code}} {{$client->city}} {{$client->region}}</td>
             <td class="px-6 py-4"><a href="tel:{{$client->phone}}">{{$client->phone}}</a><br><a
                     href="mailto:{{$client->mail}}">{{$client->mail}}</a></td>
             <td class="px-6 py-4">
-                @foreach($client->vehicles as $vehicle)
-                    - {{ $vehicle->brand}} {{ $vehicle->model }} {{ $vehicle->plate}} <br>
+                @foreach($client->categories as $category)
+                   {{ $category->parent?->name }} {{ $category->name}} - {{ $category->pivot->note }}<br>
                 @endforeach
             </td>
             <td class="px-6 py-4 text-center">
