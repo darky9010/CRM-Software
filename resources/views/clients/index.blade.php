@@ -70,7 +70,7 @@
 
                             <div class="relative">
                                 <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.vehicle') }}</label>
+                                    class="block uppercase tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2">{{ __('site.subcategory') }}</label>
                                 <select
                                     class="select2 block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     name="child" id="child">
@@ -135,17 +135,16 @@
         let language = "";
         let client = 0;
         let page = 1;
-        let id = $('#category').val();
+        let id = $(this).val();
 
         $('#child').empty();
-        $('#child').append(`<option value="0" disabled selected>Processing...</option>`);
+        $('#child').append(`<option value="${category}" selected>All</option>`);
         $.ajax({
             type: 'GET',
             url: '/categories/getChildCategory/' + id,
             success: function (response) {
                 var response = JSON.parse(response);
                 console.log(response);
-                $('#child').empty();
                 response.forEach(element => {
                     $('#child').append(`<option value="${element['id']}" label="${element['name']} ">${element['name']}</option>`);
                 });
