@@ -34,7 +34,7 @@
                     href="mailto:{{$client->mail}}">{{$client->mail}}</a></td>
             <td class="px-6 py-4">
                 @foreach($client->categories as $category)
-                   {{ $category->parent?->name }} {{ $category->name}} - {{ $category->pivot->note }}<br>
+                   - @if($category->parent?->name){{ $category->parent->name }} ->@endif {{ $category->name}} @if( $category->pivot->function )-> {{ $category->pivot->function }}@endif<br>
                 @endforeach
             </td>
             <td class="px-6 py-4 text-center">

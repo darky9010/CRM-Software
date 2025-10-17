@@ -46,11 +46,37 @@
                                 class="block uppercase tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2">{{ __('site.language') }}</label>
                             <select
                                 class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                name="title" id="title">
+                                name="language" id="language">
                                 <option value="0" selected>{{__('site.all')}}</option>
-                                <option value="1">Deutsch</option>
-                                <option value="2">Frenc</option>
+                                <option value="d">Deutsch</option>
+                                <option value="f">Französisch</option>
+                                <option value="i">Italienisch</option>
                             </select>
+                        </div>
+                        <div class="w-full md:w-3/12 px-3 mb-6 md:mb-0">
+                            <label
+                                class="block uppercase tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2">{{ __('site.category') }}</label>
+                            <select
+                                class="select2 block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                name="category" id="category">
+                                <option value="0" selected>{{ __('site.select') }}</option>
+                                @foreach($categories as $category)
+                                    <option
+                                        value="{{ $category->id}}">{{$category->name}}
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+
+                            <div class="relative">
+                                <label
+                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.vehicle') }}</label>
+                                <select
+                                    class="select2 block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    name="child" id="child">
+
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,13 +98,14 @@
     //filtro clienti
     $('#client').on('change', function () {
         let client = $(this).val();
-        let title = 0;
+        let language = "";
         let page = 1;
-        history.pushState(null, null, '?page=' + page + '&client=' + client + '&title=' + title);
+        let category = 0;
+        history.pushState(null, null, '?page=' + page + '&client=' + client + '&language=' + language + '&category=' + category);
         $.ajax({
-            url: "clients/?page=" + page + '&client=' + client + '&title=' + title,
+            url: "clients/?page=" + page + '&client=' + client + '&language=' + language + '&category=' + category,
             method: "GET",
-            data: {client: client,title: title},
+            data: {client: client,language: language, category: category},
             success: function (data) {
                 $('.data').html(data);
             }
@@ -86,37 +113,92 @@
     });
 
     //filtro per tipo
-    $('#title').on('change', function () {
-        let title = $(this).val();
+    $('#language').on('change', function () {
+        let language = $(this).val();
         let client = 0;
         let page = 1;
-        history.pushState(null, null, '?page=' + page + '&client=' + client + '&title=' + title);
+        let category = 0;
+        history.pushState(null, null, '?page=' + page + '&client=' + client + '&language=' + language + '&category=' + category);
         $.ajax({
-            url: "clients/?page=" + page + '&client=' + client + '&title=' + title,
+            url: "clients/?page=" + page + '&client=' + client + '&language=' + language + '&category=' + category,
             method: "GET",
-            data: {client: client,title: title},
+            data: {client: client,language: language, category: category},
             success: function (data) {
                 $('.data').html(data);
             }
         });
     });
 
+    //filtro per categoria
+    $('#category').on('change', function () {
+        let category = $(this).val();
+        let language = "";
+        let client = 0;
+        let page = 1;
+        let id = $('#category').val();
+
+        $('#child').empty();
+        $('#child').append(`<option value="0" disabled selected>Processing...</option>`);
+        $.ajax({
+            type: 'GET',
+            url: '/categories/getChildCategory/' + id,
+            success: function (response) {
+                var response = JSON.parse(response);
+                console.log(response);
+                $('#child').empty();
+                response.forEach(element => {
+                    $('#child').append(`<option value="${element['id']}" label="${element['name']} ">${element['name']}</option>`);
+                });
+            }
+        });
+
+        history.pushState(null, null, '?page=' + page + '&client=' + client + '&language=' + language + '&category=' + category);
+        $.ajax({
+            url: "clients/?page=" + page + '&client=' + client + '&language=' + language + '&category=' + category,
+            method: "GET",
+            data: {client: client,language: language, category: category},
+            success: function (data) {
+                $('.data').html(data);
+            }
+        });
+    });
+
+    //filtro per categoria
+    $('#child').on('change', function () {
+        let category = $(this).val();
+        let language = "";
+        let client = 0;
+        let page = 1;
+        let id = $('#child').val();
+
+        history.pushState(null, null, '?page=' + page + '&client=' + client + '&language=' + language + '&category=' + category);
+        $.ajax({
+            url: "clients/?page=" + page + '&client=' + client + '&language=' + language + '&category=' + category,
+            method: "GET",
+            data: {client: client,language: language, category: category},
+            success: function (data) {
+                $('.data').html(data);
+            }
+        });
+    });
+
+
     $(document).ready(function () {
         $(document).on('click', '.relative', function (event) {
-            let title = $('#title').children("option:selected").val();
+            let language = $('#language').children("option:selected").val();
             let client = $('#client').children("option:selected").val();
             event.preventDefault();
             let page = $(this).attr('href').split('page=')[1];
-            history.pushState(null, null, '?page=' + page + '&client=' + client + '&title=' + title);
+            history.pushState(null, null, '?page=' + page + '&client=' + client + '&language=' + language);
             fetch_data(page);
         });
 
         function fetch_data(page) {
             let _token = $("input[name=_token]").val();
-            let title = $('#title').children("option:selected").val();
+            let language = $('#language').children("option:selected").val();
             let client = $('#client').children("option:selected").val();
             $.ajax({
-                url: "clients/?page=" + page + '&client=' + client + '&title=' + title,
+                url: "clients/?page=" + page + '&client=' + client + '&language=' + language,
                 method: "GET",
                 data: {_token: _token, page: page},
                 success: function (data) {

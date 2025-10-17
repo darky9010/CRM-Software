@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -38,6 +39,10 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         //
+    }
+
+    public function getChildCategory($id){
+        echo json_encode(DB::table('categories')->where('parent_id', $id)->get());
     }
 
     /**

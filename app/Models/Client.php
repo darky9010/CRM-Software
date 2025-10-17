@@ -13,7 +13,7 @@ class Client extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class)->withPivot('note')->withTimestamps();
+        return $this->belongsToMany(Category::class)->withPivot('function')->withTimestamps();
     }
 
     public function vehicles(){

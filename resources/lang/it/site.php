@@ -98,6 +98,8 @@ return [
     'region' => 'Cantone',
     'note' => 'Note',
     'add_vehicle' => 'Nuovo veicolo',
+    'category' => 'Categoria',
+    'categories' => 'Categorie',
 
     //Suppliers
     'supplier' => 'Fornitore',

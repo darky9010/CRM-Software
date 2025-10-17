@@ -9,10 +9,10 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','parent_id'];
 
     public function clients() {
-        return $this->belongsToMany(Customer::class)->withPivot('note')->withTimestamps();;
+        return $this->belongsToMany(Customer::class)->withPivot('function')->withTimestamps();;
     }
 
     public function parent()

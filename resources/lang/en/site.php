@@ -98,6 +98,8 @@ return [
     'region' => 'Region',
     'note' => 'Note',
     'add_vehicle' => 'Add Vehicle',
+    'category' => 'Category',
+    'categories' => 'Categories',
 
     //Suppliers
     'supplier' => 'Supplier',

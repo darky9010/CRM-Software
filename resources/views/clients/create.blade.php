@@ -30,13 +30,49 @@
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.type') }}</label>
                                 <select
                                     class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    name="title" id="title">
-                                    <option value="Signore">Signore</option>
-                                    <option value="Signora">Signora</option>
-                                    <option value="Signori">Signori</option>
-                                    <option value="Ditta">Ditta</option>
+                                    name="language" id="language">
+                                    <option value="d">Tedesco</option>
+                                    <option value="f">Francese</option>
+                                    <option value="i">Italiano</option>
                                 </select>
                             </div>
+                            <div class="w-full md:w-1/5 px-3">
+                                <label
+                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.title') }}</label>
+                                <select
+                                    class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    name="title" id="title">
+                                    <option value="Herr">Herr</option>
+                                    <option value="Frau">Frau</option>
+                                </select>
+                            </div>
+                            <div class="w-full md:w-1/5 px-3">
+                                <label
+                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.rank') }}</label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text" id="rank" name="rank" class="form-control" required="">
+                            </div>
+                            <div class="w-full md:w-1/5 px-3">
+                                <label
+                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.suppliers') }}</label>
+                                <select
+                                    class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    name="company_id" id="company_id">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="w-full md:w-1/5 px-3">
+                                <label
+                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.note') }}</label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text" id="note" name="note" class="form-control" required="">
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full md:w-1/5 px-3">
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.individual_company') }}</label>

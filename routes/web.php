@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
@@ -70,5 +71,6 @@ Route::redirect('/', '/it/dashboard');
     Route::get('reports/getVehicleHours/{id}', [VehicleController::class, 'getVehicleHours']);
     Route::get('reports/getProductPrice/{id}', [ProductController::class, 'getProductPrice']);
     Route::get('reports/getProductDescription/{id}', [ProductController::class, 'getProductDescription']);
+    Route::get('/categories/getChildCategory/{id}', [CategoryController::class, 'getChildCategory']);
 
 require __DIR__ . '/auth.php';

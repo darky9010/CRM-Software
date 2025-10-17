@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Category;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use Illuminate\Http\Request;
@@ -18,21 +19,45 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
-        $names = Client::select('id', 'name', 'surname')->orderBy('name', 'asc')->get();
-        $title = Client::where('title', 'Ditta')->get();
+        $names = Client::select('id', 'name', 'surname')->orderBy('name')->get();
+        $languages = Client::select('language')->distinct()->get();
+        $categories = Category::whereNull('parent_id')->orderBy('name')->get();
+
+        // Se non è una richiesta AJAX, mostra la vista principale
         if (!$request->ajax()) {
-            $clients = Client::orderBy('name', 'asc')->paginate(10);
-            return view('clients.index', compact('clients', 'names', 'title'));
-        } elseif ($request->client != 0 && $request->title == 0) {
-            $clients = Client::where('id', $request->client)->orderBy('name', 'asc')->paginate(10);
-            return view('clients.child', compact('clients', 'names', 'title'));
-        } elseif ($request->client == 0 && $request->title != 0) {
-            ($request->title == 1) ? $clients = Client::where('language', '!=', 'f')->orderBy('name', 'asc')->paginate(10) : $clients = Client::where('language', 'f')->orderBy('name', 'asc')->paginate(10);
-            return view('clients.child', compact('clients', 'names', 'title'));
-        } else {
-            $clients = Client::orderBy('name', 'asc')->paginate(10);
-            return view('clients.child', compact('clients', 'names', 'title'));
+            $clients = Client::orderBy('surname')->paginate(10);
+            return view('clients.index', compact('clients', 'names', 'languages','categories'));
         }
+
+        // Query base
+        $query = Client::query();
+
+        // Filtra per client specifico
+        if ($request->client && $request->client != 0) {
+            $query->where('id', $request->client);
+        }
+
+        // Filtra per lingua
+        if (!empty($request->language) && $request->language != '0') {
+            $query->where('language', $request->language);
+        }
+
+        if (!empty($request->category) && $request->category != '0') {
+            // Recupera i child della categoria selezionata
+            $childIds = Category::where('parent_id', $request->category)->pluck('id');
+
+            // Se la categoria selezionata è un child stesso, includila
+            $childIds->push($request->category);
+
+            $query->whereHas('categories', function($q) use ($childIds) {
+                $q->whereIn('categories.id', $childIds);
+            });
+        }
+
+        $clients = $query->orderBy('surname')->paginate(10);
+        $languages = Client::select('language')->distinct()->get();
+
+        return view('clients.child', compact('clients', 'names', 'languages'));
     }
 
     /**
@@ -43,7 +68,8 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        $categories = Category::all();
+        return view('clients.create',compact('categories'));
     }
 
     /**
@@ -56,6 +82,8 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         $client = new Client();
+        $client->rank = $request->rank;
+        $client->language = $request->language;
         $client->title = $request->title;
         $client->name = $request->name;
         $client->surname = $request->surname;
