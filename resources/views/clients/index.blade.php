@@ -181,7 +181,6 @@
         });
     });
 
-
     $(document).ready(function () {
         $(document).on('click', '.relative', function (event) {
             let language = $('#language').children("option:selected").val();

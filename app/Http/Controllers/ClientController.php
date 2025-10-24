@@ -25,7 +25,7 @@ class ClientController extends Controller
 
         // Se non è una richiesta AJAX, mostra la vista principale
         if (!$request->ajax()) {
-            $clients = Client::orderBy('surname')->paginate(10);
+            $clients = Client::orderBy('surname')->paginate(50);
             return view('clients.index', compact('clients', 'names', 'languages','categories'));
         }
 
@@ -54,7 +54,7 @@ class ClientController extends Controller
             });
         }
 
-        $clients = $query->orderBy('surname')->paginate(10);
+        $clients = $query->orderBy('surname')->paginate(50);
         $languages = Client::select('language')->distinct()->get();
 
         return view('clients.child', compact('clients', 'names', 'languages'));
