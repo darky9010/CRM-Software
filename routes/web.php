@@ -37,6 +37,10 @@ Route::redirect('/', '/it/dashboard');
         //Percorsi per i clienti
         Route::resource('clients', ClientController::class);
 
+        //Percorsi per categorie
+        Route::resource('categories', CategoryController::class);
+        Route::get('categories/create/{client_id}', [CategoryController::class, 'create'])->name('category.create');
+
         //Percorsi per i veicoli
         Route::resource('vehicles', VehicleController::class);
         Route::get('vehicles/create/{client_id}',[VehicleController::class,'create'])->name('vehicle.create');

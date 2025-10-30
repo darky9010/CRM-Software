@@ -131,8 +131,8 @@
                         <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full md:w-3/3 px-3">
                                 <a class="shadow bg-primary hover:bg-secondary text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4"
-                                   href="{{ route('category.create',['locale'=>app()->getLocale(),'client_id'=>$client->id]) }}">
-                                    {{ __('site.category') }}
+                                   href="{{ route('vehicle.create',['locale'=>app()->getLocale(),'client_id'=>$client->id]) }}">
+                                    {{ __('site.add_vehicle') }}
                                 </a>
                             </div>
                         </div>

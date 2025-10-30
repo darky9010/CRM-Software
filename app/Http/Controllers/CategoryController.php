@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Client;
 use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
@@ -20,9 +21,10 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($locale, $client_id)
     {
-        //
+        $client = Client::find($client_id);
+        return view('categories.create', compact('client'));
     }
 
     /**
