@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="p-6">
                     <div class="flex flex-wrap -mx-3">
@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="pb-10">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="relative overflow-x-auto shadow-md">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

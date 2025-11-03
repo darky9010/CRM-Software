@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="p-6">
                     <div class="flex flex-wrap -mx-3">
@@ -63,7 +63,7 @@
         </div>
     </div>
     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-slate-800 overflow-hidden shadow-sm">
                 <div class="p-6">
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -109,7 +109,7 @@
         </div>
     </div>
     <div class="pb-10">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-slate-50 dark:bg-slate-800">
                 <div class="bg-white overflow-hidden dark:bg-slate-800 shadow-sm ">
                     <div class="data overflow-x-auto shadow-md">
