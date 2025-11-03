@@ -27,7 +27,7 @@
                         @csrf
                         @method('patch')
                         <div class="flex flex-wrap -mx-3 mb-6">
-                            <div class="w-full md:w-1/3 px-3">
+                            <div class="w-full px-3">
                                 <label
                                     class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.name') }}</label>
                                 <input
@@ -35,6 +35,8 @@
                                     type="text" id="name" name="name" value="{{$setting->name}}" class="form-control"
                                     required="">
                             </div>
+                        </div>
+                        <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full md:w-1/3 px-3">
                                 <label
                                     class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.address') }}</label>
@@ -45,10 +47,18 @@
                             </div>
                             <div class="w-full md:w-1/3 px-3">
                                 <label
-                                    class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.postal_code') }} {{ __('site.city') }}</label>
+                                    class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.postal_code') }}</label>
                                 <input
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                     type="text" id="postal_code" name="postal_code" value="{{$setting->postal_code}}" class="form-control"
+                                    required="">
+                            </div>
+                            <div class="w-full md:w-1/3 px-3">
+                                <label
+                                    class="block uppercase tracking-wide dark:text-white text-gray-700 text-xs font-bold mb-2">{{ __('site.city') }}</label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                    type="text" id="city" name="city" value="{{$setting->city}}" class="form-control"
                                     required="">
                             </div>
                         </div>

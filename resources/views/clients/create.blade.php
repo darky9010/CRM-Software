@@ -51,11 +51,11 @@
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.rank') }}</label>
                                 <input
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                    type="text" id="rank" name="rank" class="form-control" required="">
+                                    type="text" id="rank" name="rank" class="form-control">
                             </div>
                             <div class="w-full md:w-1/5 px-3">
                                 <label
-                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.suppliers') }}</label>
+                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.category') }}</label>
                                 <select
                                     class="block appearance-none w-full bg-gray-200 border text-gray-700 py-3 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     name="company_id" id="company_id">
@@ -69,7 +69,7 @@
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.note') }}</label>
                                 <input
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                    type="text" id="note" name="note" class="form-control" required="">
+                                    type="text" id="note" name="note" class="form-control" >
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -92,14 +92,14 @@
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.phone') }}</label>
                                 <input
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                    type="text" id="phone" name="phone" class="form-control" required="">
+                                    type="text" id="phone" name="phone" class="form-control">
                             </div>
                             <div class="w-full md:w-1/5 px-3">
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.mail') }}</label>
                                 <input
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                    type="text" id="mail" name="mail" class="form-control">
+                                    type="text" id="mail" name="mail" class="form-control" required="">
                             </div>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-6">
