@@ -34,7 +34,7 @@ Route::redirect('/', '/it/dashboard');
         // Rotta setup iniziale
         Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
         Route::post('/settings', [SettingsController::class, 'store'])->name('settings.store');
-        Route::get('/settings/edit', [SettingsController::class, 'edit'])->name('settings.edit');
+        Route::get('/settings/edit/{id}', [SettingsController::class, 'edit'])->name('settings.edit');
         Route::put('/settings', [SettingsController::class, 'update'])->name('settings.update');
 
         //Percorso per la home
