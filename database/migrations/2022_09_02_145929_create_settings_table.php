@@ -18,8 +18,9 @@ class CreateSettingsTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('postal_code');
-            $table->string('logo');
-            $table->string('lang')->nullable();
+            $table->string('city');
+            $table->string('logo')->default('""');
+            $table->string('lang')->default('it');
             $table->string('bank_name');
             $table->string('bank_account');
             $table->timestamps();

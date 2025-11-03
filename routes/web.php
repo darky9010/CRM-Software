@@ -24,9 +24,19 @@ use Illuminate\Support\Facades\Lang;
 |
 */
 
+
+
+
 Route::redirect('/', '/it/dashboard');
 
-    Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => 'setlocale'], function () {
+    Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => ['setlocale','checksetup']], function () {
+
+        // Rotta setup iniziale
+        Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+        Route::post('/settings', [SettingsController::class, 'store'])->name('settings.store');
+        Route::get('/settings/edit', [SettingsController::class, 'edit'])->name('settings.edit');
+        Route::put('/settings', [SettingsController::class, 'update'])->name('settings.update');
+
         //Percorso per la home
         Route::get('/dashboard', [ReportController::class, 'index'])->name('dashboard');
 
@@ -47,9 +57,6 @@ Route::redirect('/', '/it/dashboard');
 
         //Percorsi per i fornitori
         Route::resource('companies', CompanyController::class);
-
-        //Impostazioni
-        Route::resource('settings', SettingsController::class);
 
         //Percorsi per i contatti dei fornitori
         Route::resource('contacts', ContactController::class);
