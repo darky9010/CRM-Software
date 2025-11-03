@@ -61,7 +61,7 @@
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">{{ __('site.tax') }}</label>
                                 <input type="number" id="tax" name="tax"
                                        class="form-control appearance-none block w-full bg-gray-200 text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                       value="7.7" min="7.7"
+                                       value="8.1" min="8.1"
                                        step="0.1">
                             </div>
                             <div class="w-full md:w-2/12 px-3">

@@ -49,8 +49,8 @@
                     @endif
                 @endforeach
             </td>
-            <td class="px-6 py-4 font-medium sm:text-right text-gray-900 dark:text-white whitespace-nowrap">{{number_format($report->total,2,".","'")}}</td>
-            <td class="px-6 py-4 font-medium sm:text-right text-gray-900 dark:text-white whitespace-nowrap">+ {{$report->tax}}%</td>
+            <td class="px-6 py-4 font-medium sm:text-right text-gray-900 dark:text-white whitespace-nowrap">{{number_format($report->total,2,".","'")}} escl. IVA</td>
+            <td class="px-6 py-4 font-medium sm:text-right text-gray-900 dark:text-white whitespace-nowrap">{{$report->tax}}%</td>
             <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap text-center">
                 <form method="POST"
                       action="{{ route('reports.edit', ['locale'=>app()->getLocale(),'report'=>$report->id]) }}">
