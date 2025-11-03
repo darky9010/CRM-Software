@@ -22,6 +22,7 @@ class DocumentController extends Controller
 
     public function update($locale, $id)
     {
+        $setting = Settings::first();
         $fmt = datefmt_create('it_IT', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'Europe/Rome', IntlDateFormatter::GREGORIAN, 'dd MMMM yyyy');
         $report = Report::find($id);
         $prodotti = [];
@@ -77,6 +78,7 @@ class DocumentController extends Controller
         $my_template->setValue('totaleivaincl', number_format($iva + $report->total, 2, ".", "'"));
         $my_template->setValue('totaleiva10g', number_format(round((($iva + $report->total) - (($iva + $report->total) * 3 / 100)) * 2, 1) / 2, 2, ".", "'"));
         $my_template->setValue('iva', $report->tax);
+        $my_template->setValue('capdoc', $setting->city);
 
         //Inserimento dei prodotti nella tabella
         foreach ($report->products as $product) {
